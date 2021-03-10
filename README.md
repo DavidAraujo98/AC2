@@ -1,2 +1,2 @@
-# Arquitetura_Computadores_2
+# Arquitetura Computadores 2
 Resolução dos guiões práticos
