@@ -16,10 +16,10 @@
 #	}
 
 		.data
-		.eqv	printStr, 8
-		.eqv	printInt, 6
-		.eqv	printInt10, 7
-		.eqv	readInt10, 5
+		.equ	printStr, 8
+		.equ	printInt, 6
+		.equ	printInt10, 7
+		.equ	readInt10, 5
 		
 str1:	.asciiz	"\nIntroduza um numero (sinal e módulo): "
 str2:	.asciiz	"\nValor lido, em base 2: "

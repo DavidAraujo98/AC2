@@ -11,17 +11,17 @@
 #	$t0:	c
 
 		.data
-		.eqv	getChar, 2
-		.eqv	putChar, 3
+		.equ	getChar, 2
+		.equ	putChar, 3
 		.text
 		.globl main
 
 main:	li	$v0, getChar
 		syscall
 		
-		beq $v0, '\n', while
+		move $a0, $v0
+		beq $a0, '\n', while
 		
-		move	$a0, $v0
 		li	$v0, putChar
 		syscall
 		
