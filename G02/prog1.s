@@ -18,12 +18,12 @@
 		.text
 		.globl main
 		
-main:	li	$a0, 0
-while:	li $v0, readTimer
+main:		li	$a0, 0
+while:		li $v0, readTimer
 		syscall
 	
 		blt	$v0, 200000, while
-	
+		
 		addiu	$a0, $a0, 1		# ++counter
 	
 		li	$a1, 0x000400A
@@ -33,8 +33,11 @@ while:	li $v0, readTimer
 		li	$v0, putChar
 		li	$a0, '\r'
 		syscall
-	
-		j main
+		
+		li	$v0, resetTimer
+		syscall
+		
+		j while
 	
 		li $v0, 0
 		jr $ra
