@@ -29,21 +29,17 @@ main:	la	$a0, str
 #	}
 #}		
 	
-delay:	addiu	$sp, $sp, -4
-		sw	$ra, 0($sp)
-		
-		move	$t0, $a0
-		
-for:	ble	$t0, 0, end
+delay:	
+for:	blez	$a0, end
 		
 		li	$v0, resetTimer			# resetCoreTimer();
 		syscall
 		
 sleep:	li	$v0, readTimer			# while(readCoreTimer() < K);
+		syscall
 		blt	$v0, 20000, sleep
 
+		addi	$a0, $a0, -1 
 		j for
 		
-end:	lw	$ra, 0($sp)
-		addiu	$sp, $sp, 4
-		jr	$ra
+end:	jr	$ra

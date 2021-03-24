@@ -24,18 +24,15 @@ main:	li	$t0, 0
 while:	move	$a0, $t5
 		jal	delay
 		
-		j resume
-		
 stop:	li	$v0, inkey
 		syscall
+		beqz	$v0, skp
 		move	$t4, $v0
 		
-		beq	$t4, 'R', resume
-		j stop
+skp:	beq	$t4, 'R', resume
+		beq	$t4, 'S', stop
 		
-resume:	beq	$t4, 'S', stop
-		
-		bne	$t4, 'S', skA		# if(inkey() != 'S') -> skip to skA
+resume:	bne	$t4, 'S', skA		# if(inkey() != 'S') -> skip to skA
 		div	$t5, $t5, 2			# else -> delay / 2 (same as dividing the frequency by half)
 		
 skA:	bne	$t4, 'R', skB		# if(inkey() != 'N') -> skip to SkB
