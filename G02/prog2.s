@@ -45,5 +45,5 @@ sleep:	li	$v0, readTimer			# while(readCoreTimer() < K);
 		j for
 		
 end:	lw	$ra, 0($sp)
-		addiu	$sp, $sp, -4
+		addiu	$sp, $sp, 4
 		jr	$ra

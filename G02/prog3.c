@@ -3,7 +3,9 @@
 void delay(int ms);
 
 int main(void){
-	int cnt1 = 0, cnt5 = 0, cnt10 = 0;
+	int cnt1 = 0;
+	int cnt5 = 0;
+	int cnt10 = 0;
 	
 	while(1){
 		delay(100);
