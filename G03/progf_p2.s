@@ -4,6 +4,13 @@
 	.equ TRISE, 0x6100			# TRISE address is 0xBF886100
 	.equ PORTE, 0x6110			# PORTE address is 0xBF886110
 	.equ LATE, 0x6120			# LATE address is 0xBF886120
+	
+	.equ TRISB, 0x6040
+	.equ PORTB, 0x6050
+	.equ LATB, 0x6060	
+
+	.equ readTimer, 11
+	.equ resetTimer, 12
 
 	.text
 	.globl main
@@ -19,7 +26,7 @@ main:
 	ori		$t2, $t2, 0x0004	# RB2 = 1 
 	sw		$t2, TRISB($t1)
 	
-	li		$a0, 30000
+	li		$a0, 200
 	li		$t0, 0
 	
 	lw		$t3, LATE($t1)
@@ -27,14 +34,16 @@ main:
 	sw		$t3, LATE($t1)
 	
 while:
+	li		$a0, 200
 	jal delay
 	
 	lw		$t3, LATE($t1)
 	lw		$t2, PORTB($t1)
-	
-	bez		$t2, dir
+	andi	$t2, $t2, 0x0004
 
 	nor		$t0, $t3, $0		# negates every bit
+
+	beqz	$t2, dir
 
 	srl		$t0, $t0, 4			# moves negated bit 4 to first position 
 	andi	$t0, $t0, 0x0001	# cleans value, leaving only the bit 1
@@ -45,12 +54,10 @@ while:
 	j		ewh
 	
 dir:
-	nor		$t0, $t3, $0		# negates every bit
-
 	sll		$t0, $t0, 4			# moves negated bit 0 to fourth position 
-	andi	$t0, $t0, 0x0004	# cleans value, leaving only the bit 1
+	andi	$t0, $t0, 0x0008	# cleans value, leaving only the bit 4
 	
-	sra		$t3, $t3, 1			# shifs left one position the previous value
+	sra		$t3, $t3, 1			# shifs right one position the previous value
 	or		$t3, $t3, $t0		# OR operation only changes the 0 from the sll, if previous bit 4 was a 0
 
 ewh:	

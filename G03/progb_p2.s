@@ -9,6 +9,8 @@
 	.equ PORTB, 0x6050
 	.equ LATB, 0x6060
 	
+	.equ readTimer, 11
+	.equ resetTimer, 12
 
 	.text
 	.globl main
@@ -24,7 +26,7 @@ main:
 	ori		$t2, $t2, 0x000F	# RB0-RB3 = 1 
 	sw		$t2, TRISB($t1)
 	
-	li		$a0, 12500
+	li		$a0, 250
 	li		$t0, 0
 	
 	lw		$t3, LATE($t1)
@@ -32,6 +34,7 @@ main:
 	sw		$t3, LATE($t1)
 	
 while:
+	li	$a0, 250
 	jal delay
 	
 	lw		$t3, LATE($t1)

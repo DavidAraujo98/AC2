@@ -5,6 +5,9 @@
 	.equ PORTE, 0x6110			# PORTE address is 0xBF886110
 	.equ LATE, 0x6120			# LATE address is 0xBF886120
 
+	.equ readTimer, 11
+	.equ resetTimer, 12
+
 	.text
 	.globl main
 
@@ -14,7 +17,7 @@ main:
 	andi	$t2, $t2, 0xFFF0	# RE0-R03 = 0 
 	sw		$t2, TRISE($t1)
 	
-	li		$a0, 30000
+	li		$a0, 200
 	li		$t0, 0
 	
 	lw		$t3, LATE($t1)
@@ -22,6 +25,7 @@ main:
 	sw		$t3, LATE($t1)
 	
 while:
+	li		$a0, 200
 	jal delay
 
 	lw		$t3, LATE($t1)
