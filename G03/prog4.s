@@ -9,6 +9,8 @@
 	.equ PORTB, 0x6050
 	.equ LATB, 0x6060
 	
+	.equ resetTimer, 12
+	.equ readTime, 11
 
 	.text
 	.globl main
