@@ -4,7 +4,7 @@
 	.equ resetCoreTimer, 12
 	
 	.text
-	.globl delay
+	.globl timeDone
 
 #	$t1 -> retValue
 #	$t2 -> curCount
