@@ -13,8 +13,6 @@ void send2displays(unsigned char value){
 	
 	int dh = value >> 4;
 	int dl = value & 0x0F;
-
-	printf("%d", dis);
 	
 	if(dis == 0){
 		LATDbits.LATD6 = 0;

@@ -1,4 +1,4 @@
-	.data
+im fee	.data
 	
 	.equ SFR_BASE_HI, 0xBF88	# 16 MSbits of SFR area
 	.equ TRISE, 0x6100			# TRISE address is 0xBF886100
@@ -15,7 +15,8 @@
 #	RE0 -> Output	(0)
 #	RB0 -> Input	(1)
 		
-main:	lui	$t1, SFR_BASE_HI
+main:	
+	lui	$t1, SFR_BASE_HI
 	lw	$t2, TRISE($t1)
 	andi	$t2, $t2, 0xFFFE	# bit0 a 0
 	sw	$t2, TRISE($t1)
