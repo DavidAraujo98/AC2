@@ -21,6 +21,7 @@ int main(void){
 	EnableInterrupts();
 	
 	T1CONbits.TON = 1;
+	T3CONbits.TON = 1;
 	
 	while(1);
 	
