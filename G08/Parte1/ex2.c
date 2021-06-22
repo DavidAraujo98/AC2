@@ -14,10 +14,12 @@ void putc(char byte2send) {
 
 
 int main(void){
-	U2MODEbits.BRGH = ((PBCLK + 8 * 115200) / (16 * 115200)) - 1;
+
 	U2MODEbits.BRGH = 0;
+	U2BRG = 10;
+	
 	U2MODEbits.PDSEL = 0;
-	U2MODEbits.STSEL = 0;
+	U2MODEbits.STSEL = 1;
 	
 	U2STAbits.UTXEN = 1;
 	U2STAbits.URXEN = 1;

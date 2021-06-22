@@ -15,13 +15,13 @@ void send2displays(unsigned char value){
 		LATDbits.LATD6 = 0;
 		LATDbits.LATD5 = 1;	// display low active
 		LATB = (0x80FF & LATB) | (display7Scodes[dl] << 8);
-		dis = 1;
 	}else{
 		LATDbits.LATD6 = 1;	// display high active
 		LATDbits.LATD5 = 0;
 		LATB = (0x80FF & LATB) | (display7Scodes[dh] << 8);
-		dis = 0;
 	}
+	
+	dis = !dis;
 }
 
 // Interrupction Handler
@@ -36,9 +36,7 @@ void _int_(27) isr_adc(void){
         sum += p[i*4];
     }
 
-    int med_voltage; // = sum/8;
-
-    med_voltage = ADC1BUF0;
+    int med_voltage = sum / 8;
 
     voltage = (med_voltage*33 + 511) / 1023;
     

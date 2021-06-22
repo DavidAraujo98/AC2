@@ -1,7 +1,6 @@
 #include<detpic32.h>
 
 int main(void){
-	// Potenciometro -> RB4
 	TRISBbits.TRISB4 = 1;
 	AD1PCFGbits.PCFG4 = 0;
 	AD1CON1bits.SSRC = 7;
